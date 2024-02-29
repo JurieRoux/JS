@@ -1,4 +1,4 @@
-What we learnt:
+What we learnt in Chapter 6:
 • Basic functions
 • Function arguments
 • Return
