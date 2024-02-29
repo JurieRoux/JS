@@ -95,8 +95,8 @@
 // doFlexibleStuff(functionVariable);
 // ---------------------------------------
 
-// let youGotThis = function () {
-//   console.log("You're doing really well, keep coding!");
-// };
-// setTimeout(youGotThis, 1000);
-// //setInterval(youGotThis, 1000); 
+let youGotThis = function () {
+  console.log("You're doing really well, keep coding!");
+};
+setTimeout(youGotThis, 1000);
+//setInterval(youGotThis, 1000); 
