@@ -8,6 +8,7 @@ console.log(i);
 }
 
 1.
+
 0
 3
 6
