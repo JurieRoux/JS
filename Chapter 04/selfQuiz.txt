@@ -1,0 +1,13 @@
+1. one
+2. this is the one
+3. login
+4. Welcome, that is a user: John
+5. Wake up, it's morning
+6. Result:
+    true
+    false
+    true
+    true
+7. Result:
+100 was LESS or Equal to 100
+100 is Even

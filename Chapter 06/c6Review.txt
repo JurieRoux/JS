@@ -1,0 +1,46 @@
+What we learnt:
+• Basic functions
+• Function arguments
+• Return
+• Variable scope in functions
+• Recursive functions
+• Nested functions
+• Anonymous functions
+• Function callbacks
+//////////////////////////////////
+
+Self Quiz:
+1.
+Answer: 10
+Reasoning:
+returned value is not assigned to any variable so the increments of 10 never occurs and prints original vlaue of 10
+
+2.
+Answer: Hello
+Reasoning:
+anonymous function is defined and immediately invoked becuase of the () immediately after Function 
+
+3.
+Answer:
+Welcome
+Laurence
+My Name is Laurence
+Reasoning:
+The first immediately invoked function with ()
+The third funciton declares a variable firstName with the value "Laurence" and returns it.
+The fourth function takes firstName and logs a message to the console, passing "Laurence" as the argument when invoking the function.
+
+4. 
+Answer: 19
+Reasoning: 
+Arrow function takes param "num" and returns "num + 5". 
+Argument in function is 14 
+c.log takes 5 + 14
+
+5.
+Answer: 16
+Reasoning:
+same as before except not arrow function
+param num is 2
+argument is 14
+14 + 2 = 16

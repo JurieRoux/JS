@@ -1,0 +1,56 @@
+What we learnt in Chapter 5
+
+• while loop
+• do while loop
+• for loop
+• for in
+• for of loop
+//////////////////////////////////////////////
+
+Self Quiz Test
+
+//////Question 1. 
+What is the expected output for the following code?
+
+let step = 3;
+for (let i = 0; i < 1000; i += step) {
+if (i > 10) {
+break;
+}
+console.log(i);
+}
+ANSWER:
+Intially code uses a for loop to iterate 0-1000 in step sizes of 3 - line16. 
+However, in line17 there is a break statement if the value of i becomes greater than 10. So it will never go to 1000.
+    0
+    3
+    6
+    9
+
+////Question 2.
+What is the final value for myArray, and what is expected in the console?
+
+const myArray = [1,5,7];
+for(aa in myArray){
+console.log(Number(aa));
+aa = Number(aa) + 5;
+console.log(aa);
+}
+console.log(myArray);
+
+ANSWER:
+For in loop used to iterate keys of the array. 
+Variable aa is a string but won't affect the array elements ("for in loop funcitonality")
+
+loop will iterate over keys (0,1,2) of array. 
+loop adds 5 to each of the string index (0+5,1+5,2+5) - gets to 5,6,7
+
+
+    0
+    5
+    1
+    6
+    2
+    7
+    [1, 5, 7] -elements in myarray remain unchanged 
+
