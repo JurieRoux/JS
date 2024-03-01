@@ -1,4 +1,3 @@
-"use strict"
 
 // function hiThere() {
 //     let you = prompt("What's your name? ");
