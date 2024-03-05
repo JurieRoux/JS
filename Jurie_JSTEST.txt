@@ -1,0 +1,421 @@
+-------Deleted incorrect answers--------
+
+1. Choose the correct answer:
+
+	A. var is global scoped.
+
+2. Choose the correct answer:
+
+	B. let is block scoped.
+
+3. To prevent errors related to var variables. Place the follwing at the top of your code: Choose the correct answer.
+
+    C. "use strict";
+
+4. Choose all the correct statement about variables:
+
+	A. variable names should begin with lower case.  
+	C. variable names can contain underscores. 
+ 
+5. Javascript has seven primitive types. They are the following:
+
+	A.  String, Number, BigInt, Boolean, Symbol. 
+
+6. Which template string is correct to get the output:
+	"Let's learn Python"
+
+	A. let language = "Python";
+	   let message = `Let's learn ${language}`;
+	   console.log(message);
+
+7. The following is a BigInt number:
+
+	B. 90071992547409920n
+
+8. let bigNr = 90071992547409920n;
+   let intNr = 20; 
+   let result = bigNr + intNr;
+
+   Choose the correct statement for the above:             
+
+	B. You can only operate on BigInt with other BigInts.
+           You will get the following errorUncaught TypeError: 
+         	  Cannot mix BigInt and other types, use explicit conversions
+
+
+9.let nr1 = 2;
+  let nr2 = "2";
+  console.log(nr1 + nr2);
+
+	A. the output will be "22".
+
+10. let stringNum = "2".
+    To cast this string number to a number, use the following:
+	
+	C. let num = Number(stringNum);
+
+11. let x = 2;
+    let y = 4;
+    How would you get x to the power of y?
+
+	B. let result = x ** y;
+           result will be 16
+
+           
+12. let nr3 = 8;
+    let nr4 = 2;
+
+    To get the remainder:
+
+	A. let result = nr3 % nr4;
+           result will be 0;
+
+
+13. let nr1 = 4;
+    console.log(++nr1);
+
+	B. output will be 5
+
+14. let nr1 = 4;
+    console.log(nr1--);
+
+	B. output will be 3
+
+15. let x = 1;
+    let y = 2;
+    let z = 3;
+    console.log(x < y && y < z);
+
+	B. output will be true
+
+16. let x = 1;
+    let y = 2;
+    let z = 3;
+    console.log(x > y || y > z);
+
+	A. output will be false;
+
+17. let x = 7;
+    let y = 2;
+    console.log(!(x < y));
+
+	B. output will be true
+
+18. cars = ["Toyota", "Renault", "Volkswagen"];
+    To get the element at the last index:Choose all that apply
+
+	A. console.log(cars[2]);
+    C. console.log(cars[cars.length - 1]);
+	
+
+19. favoriteFruits = ["grapefruit", "orange", "lemon"];
+    To add an element to the back:
+
+	B.favoriteFruits.push("tangerine");
+
+
+20. favoriteFruits = ["grapefruit", "orange", "lemon"];
+    To add an element to the front:
+
+	B.favoriteFruits.unshift("tangerine");
+	
+
+21. favoriteFruits = ["grapefruit", "orange", "lemon"];
+    To remove an element at the front:
+
+	B.favoriteFruits.shift();
+	
+
+22. favoriteFruits = ["grapefruit", "orange", "lemon"];
+    To remove an element at the back:
+
+	C.favoriteFruits.pop();
+
+23. let arrOfShapes = ["circle", "triangle", "rectangle", "pentagon"];
+    arrOfShapes.splice(1, 0, "square", "trapezoid");
+    console.log(arrOfShapes);
+
+	B. output will be ["circle","square","trapezoid, "triangle", "rectangle", "pentagon"];
+
+24. let arrOfShapes = ["circle", "triangle", "rectangle", "pentagon"];
+    arrOfShapes.splice(1, 1, "square", "trapezoid");
+    console.log(arrOfShapes);
+
+	B. output will be ["circle","square","trapezoid, "rectangle", "pentagon"];
+        C. output will be ["circle","square","trapezoid, "rectangle"];
+
+25. let someValues1 = [1, 2, 3];
+    let someValues2 = [4, 5, 6];
+    let someValues3 = [7, 8, 9];
+    let arrOfArrays2 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+	Find the number 8:
+
+	B. let value1 = arrOfArrays[2][1];
+
+
+26. let addresses = [{
+                      street: "2nd street",
+ 		      number: "123",
+                      zipcode: "33116",
+                      city: "Miami",
+                      state: "Florida"
+                     },
+                     {
+                      street: "1st West avenue",
+                      number: "5",
+                      zipcode: "75001",
+                      city: "Addison",
+                      state: "Texas"
+                     }];
+
+	Find "Addison"
+
+    let cityOfSecondAddress = addresses[1].city;
+    console.log(cityOfSecondAddress);
+
+27.  What will be outputted to the console in this instance?
+     const q = ' 2';
+     switch (q) {
+       case '1':
+        answer = "one";
+        break;
+       case 1:
+        answer = 1;
+        break;
+       case 2:
+        answer = "this is the one";
+        break;
+      default:
+       answer = "not working";
+      }
+      console.log(answer);
+
+    "Not working"
+
+28.  What will be outputted to the console in this instance?
+     const q = 2;
+     switch (q) {
+       case '1':
+        answer = "one";
+        break;
+       case 1:
+        answer = 1;
+        break;
+       case '2':
+        answer = "this is the one";
+        break;
+      default:
+       answer = "not working";
+      }
+      console.log(answer);
+
+      "this is the one"
+
+29. What is the expected output for the following code?
+    let step = 2;
+    for (let i = 0; i < 1000; i += step) {
+       if (i > 10) {
+          break;
+          }
+      console.log(i);
+     }
+
+0
+2
+4
+6
+8
+10
+
+30. What is the final value for myArray, and what is expected in the console?
+    const myArray = [1,5,7];
+    for(el of myArray){
+      console.log(Number(el));
+      el = Number(el) + 2;
+      console.log(el);
+     }
+    console.log(myArray);
+
+1
+3
+5
+7
+[1, 5, 7]
+
+31.  What value is output into the console?
+    (function () {
+     console.log("Let's play ");
+     })();
+     (function () {
+      return "Chess and"
+     })();
+     let result = (function () {
+     let game2 = "Dominoes";
+     return game2;
+     })();
+     console.log(result);
+     (function (score) {
+      console.log("My score was " + score);
+     })(100);
+
+Let's play
+Dominoes
+My score was 100
+
+32. What will be output to the console?
+	let test = (num) => {num * 2};
+	console.log(test(14));
+
+    28
+
+33. What will be output to the console? 
+    let addFive = (num) => num + 2;
+    console.log(addFive(14));
+
+    16
+
+34. Change the follwing to a ternary operator:
+
+let allowed;
+let age = Number(prompt("What is your age?"));
+   if (age > 12) {
+     allowed = true;
+     }else {
+        allowed = false;
+     }
+alert(`Are you allowed in? ${allowed}`);      				
+									2 points
+
+let age = Number(prompt("What is your age?"));
+let allowed = age > 12 ? true : false;
+alert(`Are you allowed in? ${allowed}`);
+
+
+35. class Person {
+ constructor(firstname, lastname) {
+ this.firstname = firstname;
+ this.lastname = lastname;
+ }
+}
+
+Create three people objects from the person class and print their names to the console.
+
+let person1 = new Person("Jurie", "R");
+let person2 = new Person("Marcus", "G");
+let person3 = new Person("Pierre", "J");
+console.log(person1.firstname + " " + person1.lastname);
+console.log(person2.firstname + " " + person2.lastname);
+console.log(person3.firstname + " " + person3.lastname);
+
+
+37. Create a Car class with a contructor for properties make.model,year. Create two cars from this class and print their information.
+
+class Car {
+  constructor(make, model, year) {
+    this.make = make;
+    this.model = model;
+    this.year = year;
+  }
+}
+let car1 = new Car("Toyota", "Camry", 2022);
+let car2 = new Car("Honda", "Civic", 2021);
+
+console.log(`Car 1: ${car1.year} ${car1.make} ${car1.model}`);
+console.log(`Car 2: ${car2.year} ${car2.make} ${car2.model}`);
+
+Output:
+Car 1: 2022 Toyota Camry
+Car 2: 2021 Honda Civic
+
+38. Try giving it a drive() method that prints "Driving my " + this.make + " car"; 
+class Car {
+  constructor(make, model, year) {
+    this.make = make;
+    this.model = model;
+    this.year = year;
+  }
+
+  drive() {
+    console.log(`Driving my ${this.make} car`);
+  }
+}
+
+let car1 = new Car("Toyota", "Camry", 2022);
+let car2 = new Car("Honda", "Civic", 2021);
+
+
+console.log(`Car 1: ${car1.year} ${car1.make} ${car1.model}`);
+car1.drive();
+
+console.log(`Car 2: ${car2.year} ${car2.make} ${car2.model}`);
+car2.drive();
+
+Output:
+Car 1: 2022 Toyota Camry
+Driving my Toyota car
+Car 2: 2021 Honda Civic
+Driving my Honda car
+
+
+39. Create an array of 10 guestnames.
+    create a prompt that ask for a person's name.
+    call a function that you must create that accepts a name and loops through your guests array list using a for of loop to return  if the person is allowed in.
+    use an alert to give the result.
+
+
+const guestList = ["Alice", "Bob", "Charlie", "David", "Emma", "Frank", "Grace", "Harry", "Ivy", "Jack"];
+
+
+const inputName = prompt("Enter your name:");
+
+
+function checkGuestList(name) {
+ for (let guest of guestList) {
+  if (guest.toLowerCase() === name.toLowerCase()) {
+   return true; // Person is allowed in
+    }
+  }
+  return false; // Person is not allowed in
+}
+
+
+const isAllowed = checkGuestList(inputName);
+
+
+if (isAllowed) {
+alert(`${inputName} is allowed in.`);
+} else {
+alert(`${inputName} is not on the guest list. Access denied.`);
+}
+
+
+40. try using the above with a forEach loop.
+
+const guestList = ["Alice", "Bob", "Charlie", "David", "Emma", "Frank", "Grace", "Harry", "Ivy", "Jack"];
+
+const inputName = prompt("Enter your name:");
+
+function checkGuestList(name) {
+  return guestList.find(guest => guest.toLowerCase() === name.toLowerCase()) !== undefined;
+}
+
+const isAllowed = checkGuestList(inputName);
+
+if (isAllowed) {
+  alert(`${inputName} is allowed in.`);
+} else {
+  alert(`${inputName} is not on the guest list. Access denied.`);
+}
+
+
+									
+
+
+
+
+
+
+
+
+	
+Total: 50 points
