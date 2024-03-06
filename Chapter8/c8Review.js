@@ -14,7 +14,6 @@
 // console.log (secretMes1);
 // console.log (secretMes2);
 
-
 // // // Decode the URI encoded message to retrieve the original message
 // // const decodedComp = decodeURIComponent(secretMes1);
 // // console.log(decodedComp); // Output the decoded message to the console
@@ -195,5 +194,4 @@
 // // console.log(d);
 // // d.setDate(10);
 // console.log(d);
-
 
