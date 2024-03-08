@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
     <title>JS Tester</title>
     <style>
@@ -10,35 +11,75 @@
         }
     </style>
 </head>
-<body> 
+
+<body>
     <div class="container">
         <div class="box" id="box0">Box #1</div>
         <div class="box" id="box1">Box #2</div>
         <div class="box" id="box2">Box #3</div>
         <div class="box" id="box3">Box #4</div>
-    </div> 
-    <script>      
-        const main = document.querySelector(".container");
-        const boxes = document.querySelectorAll(".box");
-        main.addEventListener("click", (e) => {
-            console.log("4");
-        },false);
-        main.addEventListener("click", (e) => {
-            console.log("1");
-        },true);
- 
-        boxes.forEach(ele => {
-            ele.addEventListener("click", (e) => {
-                console.log("3");
-                console.log(e.target.textContent);
-            },false);
-            ele.addEventListener("click", (e) => {
-                console.log("2");
-                console.log(e.target.textContent);
-            },true);
-   
-        });
-    </script>
+    </div>
+    <script>
+        // Step 1: Select elements
+        const boxes = document.querySelectorAll('.box');
+        const container = document.querySelector('.container');
 
+        // Step 2: Add event listeners to main container
+        container.addEventListener('click', () => {
+            console.log('Container clicked ');
+        });
+        container.addEventListener('click', () => {
+            console.log('Container clicked - capturing', { capture: true });
+        }, true);
+
+        // Step 3: Add click event listeners to nested elements
+        boxes.forEach((box, index) => {
+            box.addEventListener('click', () => {
+                console.log(`Box ${index + 1} clicked `);
+                console.log('Text content:', box.textContent);
+            });
+            box.addEventListener('click', () => {
+                console.log(`Box ${index + 1} clicked - capturing, { capture: true }`);
+                console.log('Text content:', box.textContent);
+            }, );
+        });true
+    </script>
 </body>
 </html>
+
+<!-- Nested Objects standard -->
+
+<!-- <!DOCTYPE html>
+<html>
+<body>
+<style>
+div {
+border: 1px solid black;
+margin-left: 5px;
+}
+</style>
+<div id="message">Bubbling events</div>
+<div id="output">
+1
+<div>
+2
+<div>
+3
+<div>
+4
+<div>5</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+function bubble() {
+console.log(this.innerText);
+}
+let divs = document.getElementsByTagName("div");
+for (let i = 0; i < divs.length; i++) {
+divs[i].addEventListener("click", bubble);
+}
+</script>
+</body>
+</html> -->
