@@ -6,4 +6,3 @@ function showNames() {
     return lastOne;
 }
 console.log(showNames("JavaScript", "Laurence", "Mike", "Larry"));
-

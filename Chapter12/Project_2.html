@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>JavaScript Course</title>
+    <!-- CSS styling -->
     <style>
         .hide {
             display: none;
@@ -21,35 +22,61 @@
     </style>
 </head>
 <body>
-    <form name="myform"> Email:
-        <input type="text" name="email"> <span class="error hide"></span>
-        <br> Password:
-        <input type="password" name="password"> <span class="error hide"></span>
-        <br> Username:
-        <input type="text" name="userName"> <span class="error hide"></span>
-        <br>
-        <input type="submit" value="Sign Up"> </form>
+    <!-- Form for user signup -->
+    <form name="myform">
+        Email:
+        <!-- Input field for email -->
+        <input type="text" name="email">
+        <!-- Error message for email -->
+        <span class="error hide"></span><br>
+
+        Password:
+        <!-- Input field for password -->
+        <input type="password" name="password">
+        <!-- Error message for password -->
+        <span class="error hide"></span><br>
+
+        Username:
+        <!-- Input field for username -->
+        <input type="text" name="userName">
+        <!-- Error message for username -->
+        <span class="error hide"></span><br>
+
+        <!-- Submit button -->
+        <input type="submit" value="Sign Up">
+    </form>
+
     <script>
+        // Selecting the form element
         const myForm = document.querySelector("form");
+        // Selecting all input elements
         const inputs = document.querySelectorAll("input");
+        // Selecting all error spans
         const errors = document.querySelectorAll(".error");
+        // Array of required fields
         const required = ["email", "userName"];
+
+        // Adding event listener to form for submit event
         myForm.addEventListener("submit", validation);
+
+        // Function to validate form submission
         function validation(e) {
             let data = {};
-            e.preventDefault();
+            e.preventDefault(); // Prevent default form submission
             errors.forEach(function (item) {
-                item.classList.add("hide");
+                item.classList.add("hide"); // Hide all error messages initially
             });
             let error = false;
             inputs.forEach(function (el) {
                 let tempName = el.getAttribute("name");
                 if (tempName != null) {
-                    el.style.borderColor = "#ddd";
+                    el.style.borderColor = "#ddd"; // Resetting border color
+                    // Checking for empty required fields
                     if (el.value.length == 0 && required.includes(tempName)) {
                         addError(el, "Required Field", tempName);
                         error = true;
                     }
+                    // Validating email format
                     if (tempName == "email") {
                         let exp = /([A-Za-z0-9._-]+@[A-Za-z0-9._-]+\.[A-Za-z0-9]+)\w+/;
                         let result = exp.test(el.value);
@@ -58,6 +85,7 @@
                             error = true;
                         }
                     }
+                    // Validating password format and length
                     if (tempName == "password") {
                         let exp = /[A-Za-z0-9]+$/;
                         let result = exp.test(el.value);
@@ -70,20 +98,21 @@
                             error = true;
                         }
                     }
-                    data[tempName] = el.value;
+                    data[tempName] = el.value; // Storing input values in data object
                 }
             });
             if (!error) {
-                myForm.submit();
+                myForm.submit(); // Submitting form if no errors
             }
         }
 
+        // Function to display error message
         function addError(el, mes, fieldName) {
             let temp = el.nextElementSibling;
-            temp.classList.remove("hide");
-            temp.textContent = fieldName.toUpperCase() + " " + mes;
-            el.style.borderColor = "red";
-            el.focus();
+            temp.classList.remove("hide"); // Displaying error message
+            temp.textContent = fieldName.toUpperCase() + " " + mes; // Setting error message content
+            el.style.borderColor = "red"; // Changing border color of input
+            el.focus(); // Focusing on the input field with error
         }
     </script>
 
