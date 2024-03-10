@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +32,8 @@
         }
 
         button {
-            padding: 10px 20px;
+            width: 300px;
+            padding: 10px;
             border-radius: 5px;
             background-color: #4CAF50;
             color: white;
@@ -62,6 +64,7 @@
         }
 
         .delete {
+            width: 50px;
             background-color: #f44336;
             border-radius: 5px;
             border: none;
@@ -74,13 +77,31 @@
         .delete:hover {
             background-color: #da190b;
         }
+
+        @media (max-width: 600px) {
+
+            input[type="text"],
+            button,
+            ul {
+                width: 100%;
+            }
+
+            button,
+            .delete {
+                width: 100%;
+                margin-bottom: 10px;
+                /* Add margin between buttons */
+            }
+        }
     </style>
 </head>
+
 <body>
     <div>
         <h2>Shopping List</h2>
         <input type="text" id="taskInput" placeholder="Enter item">
         <button onclick="addTask()">Add Item</button>
+        <button onclick="clearAllTasks()">Clear All</button>
         <ul id="taskList"></ul>
     </div>
 
@@ -88,39 +109,39 @@
         function getTasks() {
             return JSON.parse(localStorage.getItem('tasks')) || [];
         }
-    
+
         function saveTasks(tasks) {
             localStorage.setItem('tasks', JSON.stringify(tasks));
         }
-    
+
         function isTaskExists(task, tasks) {
             return tasks.includes(task);
         }
-    
-        function displayTasks() {
-    const taskList = document.getElementById('taskList');
-    taskList.innerHTML = '';
-    const tasks = getTasks();
-    tasks.forEach(function (task, index) {
-        const li = document.createElement('li');
-        li.textContent = task;
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-        deleteButton.classList.add('delete');
-        deleteButton.onclick = function () {
-            tasks.splice(index, 1);
-            saveTasks(tasks);
-            displayTasks();
-        };
-        li.appendChild(deleteButton);
-        taskList.appendChild(li);
-    });
 
-    // Set focus to the input box after updating the list
-    const taskInput = document.getElementById('taskInput');
-    taskInput.focus();
-}
-    
+        function displayTasks() {
+            const taskList = document.getElementById('taskList');
+            taskList.innerHTML = '';
+            const tasks = getTasks();
+            tasks.forEach(function (task, index) {
+                const li = document.createElement('li');
+                li.textContent = task;
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.classList.add('delete');
+                deleteButton.onclick = function () {
+                    tasks.splice(index, 1);
+                    saveTasks(tasks);
+                    displayTasks();
+                };
+                li.appendChild(deleteButton);
+                taskList.appendChild(li);
+            });
+
+            // Set focus to the input box after updating the list
+            const taskInput = document.getElementById('taskInput');
+            taskInput.focus();
+        }
+
         function addTask() {
             const taskInput = document.getElementById('taskInput');
             const task = taskInput.value.trim();
@@ -136,8 +157,14 @@
                 }
             }
         }
-    
+
+        function clearAllTasks() {
+            localStorage.removeItem('tasks');
+            displayTasks();
+        }
+
         displayTasks();
-    </script>    
+    </script>
 </body>
+
 </html>
