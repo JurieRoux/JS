@@ -1,120 +1,136 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>JavaScript Course</title>
-    <!-- CSS styling -->
-    <style>
-        .hide {
-            display: none;
-        }
-        .error {
-            color: red;
-            font-size: 0.8em;
-            font-family: sans-serif;
-            font-style: italic;
-        }
-        input {
-            border-color: #ddd;
-            width: 400px;
-            display: block;
-            font-size: 1.5em;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Validation</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      margin: 20px;
+      background-color: #f4f4f4;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      font-size: 1.2em;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      border: 1px solid #ddd;
+      width: calc(100% - 12px);
+      padding: 8px;
+      margin-bottom: 15px;
+      font-size: 1em;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.8em;
+      font-style: italic;
+      margin-top: -10px;
+      margin-bottom: 15px;
+    }
+
+    input[type="submit"] {
+      background-color: #3498db;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #2980b9;
+    }
+  </style>
 </head>
 <body>
-    <!-- Form for user signup -->
-    <form name="myform">
-        Email:
-        <!-- Input field for email -->
-        <input type="text" name="email">
-        <!-- Error message for email -->
-        <span class="error hide"></span><br>
+  <form name="myform">
+    <label for="email">Email:</label>
+    <input type="text" name="email" id="email">
+    <span class="error hide"></span>
 
-        Password:
-        <!-- Input field for password -->
-        <input type="password" name="password">
-        <!-- Error message for password -->
-        <span class="error hide"></span><br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password">
+    <span class="error hide"></span>
 
-        Username:
-        <!-- Input field for username -->
-        <input type="text" name="userName">
-        <!-- Error message for username -->
-        <span class="error hide"></span><br>
+    <label for="userName">User Name:</label>
+    <input type="text" name="userName" id="userName">
+    <span class="error hide"></span>
 
-        <!-- Submit button -->
-        <input type="submit" value="Sign Up">
-    </form>
+    <input type="submit" value="Sign Up">
+  </form>
 
-    <script>
-        // Selecting the form element
-        const myForm = document.querySelector("form");
-        // Selecting all input elements
-        const inputs = document.querySelectorAll("input");
-        // Selecting all error spans
-        const errors = document.querySelectorAll(".error");
-        // Array of required fields
-        const required = ["email", "userName"];
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.forms.myform;
+      const elements = form.elements;
+      const errorElements = document.querySelectorAll('.error');
 
-        // Adding event listener to form for submit event
-        myForm.addEventListener("submit", validation);
+      form.addEventListener('submit', function (event) {
+        errorElements.forEach(function (errorElement) {
+          errorElement.classList.add('hide');
+        });
 
-        // Function to validate form submission
-        function validation(e) {
-            let data = {};
-            e.preventDefault(); // Prevent default form submission
-            errors.forEach(function (item) {
-                item.classList.add("hide"); // Hide all error messages initially
-            });
-            let error = false;
-            inputs.forEach(function (el) {
-                let tempName = el.getAttribute("name");
-                if (tempName != null) {
-                    el.style.borderColor = "#ddd"; // Resetting border color
-                    // Checking for empty required fields
-                    if (el.value.length == 0 && required.includes(tempName)) {
-                        addError(el, "Required Field", tempName);
-                        error = true;
-                    }
-                    // Validating email format
-                    if (tempName == "email") {
-                        let exp = /([A-Za-z0-9._-]+@[A-Za-z0-9._-]+\.[A-Za-z0-9]+)\w+/;
-                        let result = exp.test(el.value);
-                        if (!result) {
-                            addError(el, "Invalid Email", tempName);
-                            error = true;
-                        }
-                    }
-                    // Validating password format and length
-                    if (tempName == "password") {
-                        let exp = /[A-Za-z0-9]+$/;
-                        let result = exp.test(el.value);
-                        if (!result) {
-                            addError(el, "Only numbers and Letters", tempName);
-                            error = true;
-                        }
-                        if (!(el.value.length > 3 && el.value.length < 9)) {
-                            addError(el, "Needs to be between 3-8 characters", tempName);
-                            error = true;
-                        }
-                    }
-                    data[tempName] = el.value; // Storing input values in data object
-                }
-            });
-            if (!error) {
-                myForm.submit(); // Submitting form if no errors
-            }
+        const emailRegex = /^\S+@\S+\.\S+$/;
+        validateInput(elements.email, emailRegex, 'Please enter a valid email address.');
+
+        const passwordRegex = /^[a-zA-Z0-9]{3,8}$/;
+        validateInput(elements.password, passwordRegex, 'Password must be 3-8 characters and contain only letters and numbers.');
+
+        const formData = {};
+        for (let i = 0; i < elements.length; i++) {
+          if (elements[i].type !== 'submit') {
+            formData[elements[i].name] = elements[i].value;
+          }
         }
 
-        // Function to display error message
-        function addError(el, mes, fieldName) {
-            let temp = el.nextElementSibling;
-            temp.classList.remove("hide"); // Displaying error message
-            temp.textContent = fieldName.toUpperCase() + " " + mes; // Setting error message content
-            el.style.borderColor = "red"; // Changing border color of input
-            el.focus(); // Focusing on the input field with error
+        if (!checkForErrors()) {
+          console.log('Form submitted:', formData);
         }
-    </script>
 
+        event.preventDefault();
+      });
+
+      function validateInput(inputElement, regex, errorMessage) {
+        if (!regex.test(inputElement.value)) {
+          showError(inputElement, errorMessage);
+        }
+      }
+
+      function showError(inputElement, errorMessage) {
+        const errorElement = inputElement.nextElementSibling;
+        errorElement.textContent = errorMessage;
+        errorElement.classList.remove('hide');
+        inputElement.focus();
+      }
+
+      function checkForErrors() {
+        let hasError = false;
+        errorElements.forEach(function (errorElement) {
+          if (!errorElement.classList.contains('hide')) {
+            hasError = true;
+          }
+        });
+        return hasError;
+      }
+    });
+  </script>
 </body>
 </html>

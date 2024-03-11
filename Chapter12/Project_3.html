@@ -1,9 +1,75 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Complete JavaScript Course</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Quiz</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      margin: 20px;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    span {
+      font-size: 1.5em;
+    } 
+
+    input {
+      border: 1px solid #ddd;
+      width: calc(100% - 12px);
+      padding: 8px;
+      margin-top: 10px;
+      font-size: 1.2em;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #3498db;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    .output {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .output div {
+      margin-bottom: 10px;
+    }
+
+    .output div.green {
+      color: green;
+    }
+
+    .output div.red {
+      color: red;
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
     <!-- Displaying the first random value -->
     <span class="val1"></span>
     <!-- Displaying the plus sign -->
@@ -16,60 +82,75 @@
     <button>Check</button>
     <!-- Displaying the output of the user's answers -->
     <div class="output"></div>
-    <script>
-        const app = function () {
-            // Object to store game data
-            const game = {};
-            // Selecting elements from the DOM
-            const val1 = document.querySelector(".val1");
-            const val2 = document.querySelector(".val2");
-            const output = document.querySelector(".output");
-            const answer = document.querySelector("input");
+  </div>
 
-            // Function to initialize the game
-            function init() {
-                // Adding event listener to the button for click event
-                document.querySelector("button").addEventListener("click", checker);
-                // Loading the first question
-                loadQuestion();
-            }
+  <script>
+    const app = function () {
+      // Object to store game data
+      const game = {};
+      // Selecting elements from the DOM
+      const val1 = document.querySelector(".val1");
+      const val2 = document.querySelector(".val2");
+      const output = document.querySelector(".output");
+      const answer = document.querySelector("input[name='answer']");
 
-            // Function to generate a random value between min and max
-            function ranValue(min, max) {
-                return Math.floor(Math.random() * (max - min + 1) + min);
-            }
+      // Function to initialize the game
+      function init() {
+        // Adding event listener to the button for click event
+        document.querySelector("button").addEventListener("click", checker);
+        // Loading the first question
+        loadQuestion();
+      }
 
-            // Function to load a new question
-            function loadQuestion() {
-                // Generating random values for the question
-                game.val1 = ranValue(1, 100);
-                game.val2 = ranValue(1, 100);
-                // Calculating the correct answer
-                game.answer = game.val1 + game.val2;
-                // Displaying the random values in the DOM
-                val1.textContent = game.val1;
-                val2.textContent = game.val2;
-            }
+      // Function to generate a random value between min and max
+      function ranValue(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      }
 
-            // Function to check the user's answer
-            function checker() {
-                // Determining the background color based on the correctness of the answer
-                let bg = answer.value == game.answer ? "green" : "red";
-                // Displaying the user's answer along with the correct answer in the output
-                output.innerHTML +=
-                    `<div style="color:${bg}">${game.val1} + ${game.val2} = ${game.answer} (${answer.value})</div>`;
-                // Clearing the input field
-                answer.value = "";
-                // Loading a new question
-                loadQuestion();
-            }
+      // Function to load a new question
+      function loadQuestion() {
+        // Generating random values for the question
+        game.val1 = ranValue(1, 100);
+        game.val2 = ranValue(1, 100);
+        // Calculating the correct answer
+        game.answer = game.val1 + game.val2;
+        // Displaying the random values in the DOM
+        val1.textContent = game.val1;
+        val2.textContent = game.val2;
+      }
 
-            return {
-                init: init
-            };
-        }();
-        // Initializing the game when the DOM content is loaded
-        document.addEventListener('DOMContentLoaded', app.init);
-    </script>
+      // Function to check the user's answer
+      function checker() {
+        // Extracting the value from the input field
+        const userAnswer = answer.value.trim();
+        
+        // Checking if the user's answer is not empty
+        if (userAnswer !== "") {
+          // Determining the background color based on the correctness of the answer
+          let bg = parseInt(userAnswer, 10) === game.answer ? "green" : "red";
+          
+          // Displaying the user's answer along with the correct answer in the output
+          output.innerHTML +=
+            `<div class="${bg}">${game.val1} + ${game.val2} = ${game.answer} (${userAnswer})</div>`;
+          
+          // Clearing the input field
+          answer.value = "";
+          
+          // Loading a new question
+          loadQuestion();
+        } else {
+          // Alert the user if the input is empty
+          alert("Please enter an answer.");
+        }
+      }
+
+      return {
+        init: init
+      };
+    }();
+
+    // Initializing the game when the DOM content is loaded
+    document.addEventListener('DOMContentLoaded', app.init);
+  </script>
 </body>
 </html>
