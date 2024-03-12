@@ -93,7 +93,6 @@
             .delete {
                 width: 80%;
                 margin-bottom: 10px;
-                /* Add margin between buttons */
             }
              ul {
         width: 80%;
@@ -109,38 +108,54 @@
 
 <body>
     <div>
+        <!-- Heading for the shopping list -->
         <h2>Shopping List</h2>
+        <!-- Input field for adding new items to the list -->
         <input type="text" id="taskInput" placeholder="Enter item">
+        <!-- Button to add a new item to the list -->
         <button onclick="addTask()">Add Item</button>
+        <!-- Button to clear all items from the list -->
         <button onclick="clearAllTasks()">Clear All</button>
+        <!-- Button to export the list to a JSON file -->
         <button onclick="exportTasks()">Export List</button>
+        <!-- Button to import a list from a JSON file -->
         <button onclick="importTasks()">Import List</button>
+        <!-- Unordered list to display the shopping list items -->
         <ul id="taskList"></ul>
     </div>
 
     <script>
+        // Function to retrieve tasks from local storage or return an empty array
         function getTasks() {
             return JSON.parse(localStorage.getItem('tasks')) || [];
         }
 
+        // Function to save tasks to local storage
         function saveTasks(tasks) {
             localStorage.setItem('tasks', JSON.stringify(tasks));
         }
 
+        // Function to check if a task already exists in the list
         function isTaskExists(task, tasks) {
             return tasks.includes(task);
         }
 
+        // Function to display tasks in the HTML
         function displayTasks() {
+            // Get the task list element
             const taskList = document.getElementById('taskList');
+            // Clear the existing content of the task list
             taskList.innerHTML = '';
+            // Get tasks from local storage
             const tasks = getTasks();
+            // Iterate through tasks and create list items with delete buttons
             tasks.forEach(function (task, index) {
                 const li = document.createElement('li');
                 li.textContent = task;
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Delete';
                 deleteButton.classList.add('delete');
+                // Event listener for the delete button to remove the task
                 deleteButton.onclick = function () {
                     tasks.splice(index, 1);
                     saveTasks(tasks);
@@ -155,30 +170,42 @@
             taskInput.focus();
         }
 
+        // Function to add a new task to the list
         function addTask() {
+            // Get the task input element and trim the input value
             const taskInput = document.getElementById('taskInput');
             const task = taskInput.value.trim();
+            // Check if the input is not empty
             if (task !== '') {
                 const tasks = getTasks();
+                // Check if the task already exists in the list
                 if (!isTaskExists(task, tasks)) {
                     tasks.push(task);
                     saveTasks(tasks);
                     displayTasks();
                     taskInput.value = '';
                 } else {
+                    // Alert user if the item is already in the list
                     alert('This item is already in the list!');
                 }
             }
         }
 
+        // Function to clear all tasks from the list
         function clearAllTasks() {
             localStorage.removeItem('tasks');
             displayTasks();
         }
+
+        // Function to export the list to a JSON file
         function exportTasks() {
+            // Get tasks from local storage
             const tasks = getTasks();
+            // Convert tasks to JSON format
             const jsonTasks = JSON.stringify(tasks);
+            // Create a Blob containing the JSON data
             const blob = new Blob([jsonTasks], { type: 'application/json' });
+            // Create a download link and trigger a click event to download the file
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
@@ -188,24 +215,31 @@
             document.body.removeChild(a);
         }
 
+        // Function to import tasks from a JSON file
         function importTasks() {
+            // Create an input element for file selection
             const fileInput = document.createElement('input');
             fileInput.type = 'file';
             fileInput.accept = '.json';
+            // Add event listener for file selection
             fileInput.addEventListener('change', handleFileSelect);
             fileInput.click();
 
+            // Function to handle file selection
             function handleFileSelect(event) {
                 const file = event.target.files[0];
                 if (file) {
+                    // Read the content of the selected file
                     const reader = new FileReader();
                     reader.onload = function (e) {
                         const content = e.target.result;
                         try {
+                            // Parse the JSON content and save tasks
                             const importedTasks = JSON.parse(content);
                             saveTasks(importedTasks);
                             displayTasks();
                         } catch (error) {
+                            // Alert user if there's an error parsing the file
                             alert('Error parsing the file. Please make sure it is a valid JSON file.');
                         }
                     };
@@ -213,6 +247,8 @@
                 }
             }
         }
+
+        // Display tasks when the page loads
         displayTasks();
     </script>
 </body>

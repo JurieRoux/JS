@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Checker</title>
+</head>
+<body>
+
+  <h2>Password Checker</h2>
+
+  <form id="passwordForm">
+    <label for="password">Enter your password:</label>
+    <input type="password" id="password" required>
+    <button type="button" onclick="checkUserPassword()">Check Password</button>
+  </form>
+
+  <script>
+    // Step 1: Create an array of allowed passwords
+    const allowedPasswords = ['password123', 'securePass', '123456', 'p123'];
+
+    // Step 2: Create a login function
+    function login(password) {
+      return allowedPasswords.includes(password);
+    }
+
+    // Step 3: Create a function that returns a Promise
+    function checkPassword(password) {
+      return new Promise((resolve, reject) => {
+        if (login(password)) {
+          resolve({ status: true, message: 'Password is valid.' });
+        } else {
+          reject({ status: false, message: 'Invalid password.' });
+        }
+      });
+    }
+
+    // Step 4: Create a function that checks the password using Promise
+    function passwordChecker(password) {
+      checkPassword(password)
+        .then((result) => {
+          alert(result.message);
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    }
+
+    // Step 5: Function to handle form submission
+    function checkUserPassword() {
+      const passwordInput = document.getElementById('password').value;
+      passwordChecker(passwordInput);
+    }
+  </script>
+
+</body>
+</html>
